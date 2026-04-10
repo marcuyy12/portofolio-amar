@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portofolio Amar</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #0f172a;
+    color: #e5e7eb;
+}
+
+/* HEADER */
+header {
+    background: #1e293b;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    width: 90px;
+}
+
+/* MENU */
+.menu-btn {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.menu-btn span {
+    display: block;
+    height: 3px;
+    background: white;
+    margin: 5px 0;
+    transition: 0.4s;
+}
+
+.menu-btn.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+.menu-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+.menu-btn.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* SIDEBAR */
+.sidebar {
+    position: fixed;
+    left: -300px;
+    top: 0;
+    width: 260px;
+    height: 100%;
+    background: rgba(2,6,23,0.95);
+    padding-top: 80px;
+    transition: 0.4s;
+}
+
+.sidebar a {
+    display: block;
+    padding: 18px;
+    color: white;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    background: rgba(255,255,255,0.05);
+}
+
+/* OVERLAY */
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    display: none;
+}
+
+/* PAGE */
+.page {
+    display: none;
+    padding: 60px 20px;
+    max-width: 900px;
+    margin: auto;
+}
+
+.page.active {
+    display: block;
+}
+
+.center {
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 15px;
+    color: #60a5fa;
+}
+
+/* FOTO */
+.foto {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 20px auto;
+    display: block;
+}
+
+/* PROFIL RAPI */
+.profil-box {
+    margin-top: 20px;
+    text-align: left;
+    display: inline-block;
+}
+
+.profil-box p {
+    margin: 8px 0;
+}
+
+.profil-box span {
+    display: inline-block;
+    width: 130px;
+    font-weight: bold;
+    color: #60a5fa;
+}
+
+/* IFRAME */
+iframe {
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* TOP BUTTON */
+#topBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #1e293b;
+    color: white;
+    border: none;
+    padding: 10px;
+    display: none;
+}
+</style>
+
+</head>
+<body>
+
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+<div class="sidebar" id="sidebar">
+    <a onclick="showPage('beranda')">Beranda</a>
+    <a onclick="showPage('profil')">Profil</a>
+    <a onclick="showPage('kontak')">Kontak</a>
+</div>
+
+<header>
+    <div class="menu-btn" id="menuBtn" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <h1>Website Portofolio</h1>
+    <p>Amar Najwa Leorist Pratama</p>
+    <img src="undira.png" class="logo">
+</header>
+
+<!-- BERANDA -->
+<section id="beranda" class="page active center">
+    <h2>Selamat Datang</h2>
+    <p>Halo! Selamat datang di website portofolio pribadi saya.</p>
+    <p>Saya adalah mahasiswa Universitas Dian Nusantara (UNDIRA).</p>
+</section>
+
+<!-- PROFIL -->
+<section id="profil" class="page center">
+    <h2>Profil Saya</h2>
+
+    <img src="amar portofolio.jpeg" class="foto">
+    
+
+    <div class="profil-box">
+        <p><span>Nama</span> : Amar Najwa Leorist Pratama</p>
+        <p><span>NIM</span> : 411251069</p>
+        <p><span>Universitas</span> : Universitas Dian Nusantara (UNDIRA)</p>
+        <p><span>Program Studi</span> : Teknik Informatika</p>
+    </div>
+
+    
+    <iframe src="https://docs.google.com/presentation/d/1Ns8No93bf5oOQwfhJBqCbEVXYWlj6ijm/edit?usp=sharing" height="400"></iframe>
+
+    <h3>Video Profil UNDIRA</h3>
+    <iframe src="https://www.youtube.com/embed/QZLeqcpbdkk" height="350" allowfullscreen></iframe>
+</section>
+
+<!-- KONTAK -->
+<section id="kontak" class="page center">
+    <h2>Kontak</h2>
+    <p>Email: amarpratama395@gmail.com</p>
+    <p>WhatsApp: 085934244795</p>
+    <p>Instagram: @marrx_69</p>
+</section>
+
+<button id="topBtn" onclick="scrollToTop()">↑</button>
+
+<script>
+function toggleMenu() {
+    let sidebar = document.getElementById("sidebar");
+    let overlay = document.getElementById("overlay");
+    let btn = document.getElementById("menuBtn");
+
+    if (sidebar.style.left === "0px") {
+        sidebar.style.left = "-300px";
+        overlay.style.display = "none";
+        btn.classList.remove("active");
+    } else {
+        sidebar.style.left = "0px";
+        overlay.style.display = "block";
+        btn.classList.add("active");
+    }
+}
+
+function showPage(pageId) {
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    document.getElementById(pageId).classList.add("active");
+    toggleMenu();
+}
+
+window.onscroll = function() {
+    let btn = document.getElementById("topBtn");
+    btn.style.display = document.documentElement.scrollTop > 200 ? "block" : "none";
+};
+
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
